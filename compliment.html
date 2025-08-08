@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💗 Self-Love AI</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe4e1);
+      text-align: center;
+      padding: 3rem;
+      animation: bg-fade 10s infinite alternate;
+    }
+    @keyframes bg-fade {
+      0% { background-color: #ffb6c1; }
+      100% { background-color: #fceaff; }
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .compliment-box {
+      background: white;
+      border: 3px dashed hotpink;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2rem auto;
+      width: 60%;
+      font-size: 1.8rem;
+      color: #c71585;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+    .again {
+      background-color: hotpink;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .again:hover {
+      background-color: deeppink;
+    }
+  </style>
+</head>
+<body>
+  <h1>💗 Self-Love Generator</h1>
+  <div class="compliment-box">
+    {{ compliment }}
+  </div>
+  <form action="/self_love">
+    <button class="again">Hit me with more love</button>
+  </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>✭ Self-Love AI</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe4e1);
+      text-align: center;
+      padding: 3rem;
+      animation: bg-fade 10s infinite alternate;
+      overflow-x: hidden;
+    }
+
+    @keyframes bg-fade {
+      0% { background-color: #ffb6c1; }
+      100% { background-color: #fceaff; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .compliment-box {
+      background: white;
+      border: 3px dashed hotpink;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2rem auto;
+      width: 60%;
+      font-size: 1.8rem;
+      color: #c71585;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+
+    .again, .speak-btn {
+      background-color: hotpink;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .again:hover, .speak-btn:hover {
+      background-color: deeppink;
+    }
+
+    .floating-heart {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 1; }
+    }
+
+    .meter {
+      width: 60%;
+      margin: 2rem auto;
+    }
+
+    .custom-input {
+      margin-top: 2rem;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 Self-Love Generator</h1>
+  <div class="compliment-box" id="complimentBox">
+    You’re doing better than you think!
+  </div>
+  <button class="again" onclick="newCompliment()">✨ Hit me with more love</button>
+  <button class="speak-btn" onclick="speakCompliment()">🎤 Say it out loud</button>
+
+  <div class="meter">
+    <label for="loveMeter">Compliment-o-meter 🌼</label><br>
+    <input type="range" id="loveMeter" min="1" max="5" value="3" onchange="meterEffect()">
+  </div>
+
+  <div class="custom-input">
+    <input type="text" id="customCompliment" placeholder="Write your own compliment...">
+    <button class="again" onclick="addCustom()">Add Compliment</button>
+  </div>
+
+  <audio id="loveAudio" autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_8d1f165c58.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const compliments = [
+      "🌟 You’re doing better than you think!",
+      "💗 You’re the human version of a double rainbow!",
+      "🦤 Your uselessness is majestic!",
+      "🍟 You deserve extra cheese. Always.",
+      "🐸 You’re not just a snack. You’re the whole buffet.",
+      "🚀 If being awesome were illegal, you’d be arrested 10 times over.",
+      "🥃 You have the vibe of cold juice on a hot day.",
+      "💥 You might be chaotic, but you’re my kind of chaos."
+    ];
+
+    function newCompliment() {
+      const compliment = compliments[Math.floor(Math.random() * compliments.length)];
+      document.getElementById("complimentBox").innerText = compliment;
+    }
+
+    function addCustom() {
+      const custom = document.getElementById("customCompliment").value;
+      if (custom.trim() !== "") {
+        compliments.push(custom.trim());
+        document.getElementById("customCompliment").value = "";
+        alert("Added!");
+      }
+    }
+
+    function meterEffect() {
+      const meter = document.getElementById("loveMeter").value;
+      for (let i = 0; i < meter; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 5 + 3) + "s";
+        heart.innerText = "💕";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+
+    function speakCompliment() {
+      const text = document.getElementById("complimentBox").innerText;
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.pitch = 1;
+      msg.rate = 1;
+      speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>

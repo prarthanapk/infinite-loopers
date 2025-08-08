@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔢 Useless Math</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: monospace;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            color: #ff66cc;
+        }
+        .math {
+            margin: 1rem auto;
+            font-size: 1.5rem;
+            background: #333;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 60%;
+        }
+        a {
+            margin-top: 2rem;
+            display: inline-block;
+            color: #0ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔢 Useless Math Generator</h1>
+    {% for r in results %}
+        <div class="math">{{ r }}</div>
+    {% endfor %}
+    <a href="/">⬅ Back to Home</a>
+</body>
+</html>
